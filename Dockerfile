@@ -1,4 +1,4 @@
-FROM jupyter/tensorflow-notebook:5811dcb711ba
+FROM jupyter/tensorflow-notebook:abdb27a6dfbb
 
 LABEL maintainer="Alan CHALK"
 
@@ -58,18 +58,10 @@ RUN conda install --quiet --yes \
 # --- Install vowpalwabbit, hyperopt, tpot, sklearn-deap, yellowbrick, spacy
 RUN $CONDA_DIR/bin/python -m pip install vowpalwabbit \
 					 hyperopt \
-					 deap \
-					 update_checker \
 					 tqdm \
-					 stopit \
-					 scikit-mdr \
-					 skrebate \
 					 tpot \
-					 sklearn-deap \
 					 yellowbrick \
 					 spacy \
-					 gplearn \
-					 kmapper \
                                          skope-rules \
 					 shap \
 					 lime 
@@ -82,29 +74,15 @@ RUN $CONDA_DIR/bin/python -m pip install vowpalwabbit \
 ###########
 RUN $CONDA_DIR/bin/python -m pip install --upgrade scikit-learn \
                                                    pandas
-RUN $CONDA_DIR/bin/python -m pip install mplleaflet \
-					 gpxpy \
-					 arrow \
-					 sexmachine \
-					 Geohash \
-					 haversine \
-					 toolz cytoolz \
-					 sacred \
-					 plotly \
+RUN $CONDA_DIR/bin/python -m pip install plotly \
 					 git+https://github.com/nicta/dora.git \
 					 git+https://github.com/hyperopt/hyperopt.git \
 # tflean. Deep learning library featuring a higher-level API for TensorFlow. http://tflearn.org
 					 git+https://github.com/tflearn/tflearn.git \
-					 fitter \
-					 langid \
-# Delorean. Useful for dealing with datetime
-					 delorean \
-					 trueskill \
 					 heamy \
 					 vida \
 # Useful data exploration libraries (for missing data and generating reports)
 					 missingno \
-					 pandas-profiling \
-					 s2sphere
+					 tables
 # clean up pip cache
 RUN rm -rf /root/.cache/pip/*
