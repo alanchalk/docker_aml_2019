@@ -1,5 +1,3 @@
-# Based on Niels Borie ML-docker
-
 FROM jupyter/tensorflow-notebook:5811dcb711ba
 
 LABEL maintainer="Alan CHALK"
@@ -84,17 +82,29 @@ RUN $CONDA_DIR/bin/python -m pip install vowpalwabbit \
 ###########
 RUN $CONDA_DIR/bin/python -m pip install --upgrade scikit-learn \
                                                    pandas
-
-RUN $CONDA_DIR/bin/python -m pip install plotly \
+RUN $CONDA_DIR/bin/python -m pip install mplleaflet \
+					 gpxpy \
+					 arrow \
+					 sexmachine \
+					 Geohash \
+					 haversine \
+					 toolz cytoolz \
+					 sacred \
+					 plotly \
 					 git+https://github.com/nicta/dora.git \
 					 git+https://github.com/hyperopt/hyperopt.git \
 # tflean. Deep learning library featuring a higher-level API for TensorFlow. http://tflearn.org
 					 git+https://github.com/tflearn/tflearn.git \
+					 fitter \
+					 langid \
+# Delorean. Useful for dealing with datetime
+					 delorean \
+					 trueskill \
 					 heamy \
 					 vida \
 # Useful data exploration libraries (for missing data and generating reports)
 					 missingno \
-					 tables
-
+					 pandas-profiling \
+					 s2sphere
 # clean up pip cache
 RUN rm -rf /root/.cache/pip/*
