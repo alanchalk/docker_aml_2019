@@ -76,25 +76,24 @@ RUN $CONDA_DIR/bin/python -m pip install vowpalwabbit \
 					 shap \
 					 lime 
 
-###########
-#
-# Add some usefull libs, inspired by kaggle's Dockerfile
-# CREDITS : https://hub.docker.com/r/kaggle/python/dockerfile
-#
-###########
-RUN $CONDA_DIR/bin/python -m pip install --upgrade scikit-learn \
-                                                   pandas
 
-RUN $CONDA_DIR/bin/python -m pip install plotly \
-					 git+https://github.com/nicta/dora.git \
-					 git+https://github.com/hyperopt/hyperopt.git \
-# tflean. Deep learning library featuring a higher-level API for TensorFlow. http://tflearn.org
-					 git+https://github.com/tflearn/tflearn.git \
-					 heamy \
-					 vida \
-# Useful data exploration libraries (for missing data and generating reports)
-					 missingno \
-					 tables
+RUN $CONDA_DIR/bin/python -m pip install git+https://github.com/hyperopt/hyperopt.git
+
+RUN $CONDA_DIR/bin/python -m pip uninstall scikit-learn -y
+RUN $CONDA_DIR/bin/python -m pip uninstall pandas -y
+RUN $CONDA_DIR/bin/python -m pip uninstall scipy -y
+RUN $CONDA_DIR/bin/python -m pip uninstall statsmodels -y
+
+RUN $CONDA_DIR/bin/python -m pip install --upgrade Cython
+
+RUN $CONDA_DIR/bin/python -m pip install scikit-learn \
+                                         pandas \
+                                         scipy \
+                                         missingno
+
+RUN $CONDA_DIR/bin/python -m pip install git+git://github.com/statsmodels/statsmodels.git
+
+
 
 # clean up pip cache
 RUN rm -rf /root/.cache/pip/*
