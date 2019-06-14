@@ -1,6 +1,6 @@
 # Based on Niels Borie ML-docker
 
-FROM jupyter/tensorflow-notebook:5811dcb711ba
+FROM jupyter/tensorflow-notebook:latest
 
 LABEL maintainer="Alan CHALK"
 
@@ -57,9 +57,8 @@ RUN conda install --quiet --yes \
     fix-permissions /home/$NB_USER
 
 
-# --- Install vowpalwabbit, hyperopt, tpot, sklearn-deap, yellowbrick, spacy
-RUN $CONDA_DIR/bin/python -m pip install vowpalwabbit \
-					 hyperopt \
+# --- Install (vowpalwabbit), hyperopt, tpot, sklearn-deap, yellowbrick, spacy
+RUN $CONDA_DIR/bin/python -m pip install hyperopt \
 					 deap \
 					 update_checker \
 					 tqdm \
